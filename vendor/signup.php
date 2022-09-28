@@ -76,7 +76,8 @@ if ($password === $password_confirm) {
     $password = md5($password);
 
     mysqli_query($connect, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, '$full_name', '$login', '$email', '$password', '$path')");
-
+    $jsonArray[] = $mysqli_query;
+    file_put_contents('username.json', json_encode($jsonArray, JSON_FORCE_OBJECT));
     $response = [
         "status" => true,
         "message" => "Регистрация прошла успешно!",
